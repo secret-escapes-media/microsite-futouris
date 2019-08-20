@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  {% include page/head.html %}
+
+  <body>
+
+    {% include components/tracking.html %}
+
+    {% include page/header.html %}
+
+    {% include page/banner.html %}
+
+    <div class="vpad--xl bg--blue">
+      <div class="container">
+        <div class="width width--xl text--xxl text--left text--white">
+          <p>{{page.description}}</p>
+          {% if page.primary-cta %}
+            <div class="space--lg ">
+              <a href="{{page.primary-cta.link}}" class="btn btn--lg btn--outline btn--outline-orange ">{{page.primary-cta.label}}</a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="content-spacing section-spacing">
+
+      <!-- loops through section file for page content -->
+      {% for section in site.data.sections %}
+    <div id="{{section.id}}" class="js-nav-section bg__fixed harvey {% cycle 'harvey--swap', 'bg--light' %}">
+      <div class="harvey__img" style="background-image: url('{{site.img}}/content/{{section.id}}.jpg');"> </div>
+      <div class="harvey__text boxpad--lg text text--xxl">
+        <h2 class="title title--md text--bolder text--darkblue text--left bv-title-divider">{{section.title}}</h2>
+        <div class="space--sm"></div>
+        <p>{{section.description}}</p>
+        {% if section.link %}
+        <div class="space--xl"></div>
+          <a href="{{section.link}}" class=" btn btn--solid" target="_blank"> Mehr erfahren</a>
+          {% endif %}
+      </div>
+    </div>
+      {% endfor %}
+
+    </div>
+
+    {% include page/footer.html %}
+
+  </body>
+
+</html>
